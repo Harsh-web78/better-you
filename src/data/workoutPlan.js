@@ -1,0 +1,95 @@
+// Weekday-indexed split (0 = Sunday ... 6 = Saturday). Edit freely — the
+// dashboard just reads whatever is here for the current day.
+export const WORKOUT_PLAN = {
+  0: {
+    title: 'Rest / Recovery',
+    focus: 'Rest day',
+    isRest: true,
+    exercises: [
+      { name: 'Light stretching / mobility work', sets: '1', reps: '10–15 min' },
+      { name: 'Easy walk', sets: '1', reps: '20–30 min' },
+      { name: 'Foam rolling', sets: '1', reps: '10 min' },
+    ],
+  },
+  1: {
+    title: 'Chest, Side Delts & Triceps',
+    focus: 'Chest + Side Delts + Triceps',
+    exercises: [
+      { name: 'Barbell Bench Press', sets: '4', reps: '6–8' },
+      { name: 'Incline Dumbbell Press', sets: '3', reps: '8–10' },
+      { name: 'Cable Chest Fly', sets: '3', reps: '12–15' },
+      { name: 'Seated Dumbbell Lateral Raise', sets: '4', reps: '12–15' },
+      { name: 'Cable Lateral Raise', sets: '3', reps: '15' },
+      { name: 'Rope Triceps Pushdown', sets: '3', reps: '10–12' },
+      { name: 'Overhead Dumbbell Triceps Extension', sets: '3', reps: '10–12' },
+    ],
+  },
+  2: {
+    title: 'Back, Rear Delts, Biceps & Neck',
+    focus: 'Back + Rear Delts + Biceps + Neck',
+    exercises: [
+      { name: 'Pull-Ups / Lat Pulldown', sets: '4', reps: '8–10' },
+      { name: 'Barbell Row', sets: '3', reps: '8–10' },
+      { name: 'Seated Cable Row', sets: '3', reps: '10–12' },
+      { name: 'Rear Delt Fly', sets: '3', reps: '12–15' },
+      { name: 'Barbell / EZ-Bar Curl', sets: '3', reps: '10–12' },
+      { name: 'Incline Dumbbell Curl', sets: '3', reps: '10–12' },
+      { name: 'Neck Curl / Extension', sets: '3', reps: '12–15' },
+    ],
+  },
+  3: {
+    title: 'Legs, Abs & Cardio',
+    focus: 'Legs + Abs + Cardio',
+    exercises: [
+      { name: 'Back Squat', sets: '4', reps: '6–8' },
+      { name: 'Romanian Deadlift', sets: '3', reps: '8–10' },
+      { name: 'Leg Press', sets: '3', reps: '10–12' },
+      { name: 'Leg Curl', sets: '3', reps: '12' },
+      { name: 'Standing Calf Raise', sets: '4', reps: '12–15' },
+      { name: 'Hanging Leg Raise', sets: '3', reps: '12–15' },
+      { name: 'Cable Crunch', sets: '3', reps: '15' },
+      { name: 'Incline Walk / Cycle', sets: '1', reps: '20 min' },
+    ],
+  },
+  4: {
+    title: 'Shoulders, Chest & Arms',
+    focus: 'Shoulders + Chest + Arms',
+    exercises: [
+      { name: 'Seated Overhead Press', sets: '4', reps: '6–8' },
+      { name: 'Incline Barbell / Dumbbell Press', sets: '3', reps: '8–10' },
+      { name: 'Cable Crossover', sets: '3', reps: '12–15' },
+      { name: 'Arnold Press', sets: '3', reps: '10–12' },
+      { name: 'EZ-Bar Curl', sets: '3', reps: '10–12' },
+      { name: 'Skull Crushers', sets: '3', reps: '10–12' },
+      { name: 'Close-Grip Bench Press', sets: '3', reps: '8–10' },
+    ],
+  },
+  5: {
+    title: 'Back, Lats, Traps, Biceps & Neck',
+    focus: 'Back + Lats + Traps + Biceps + Neck',
+    exercises: [
+      { name: 'Deadlift', sets: '3', reps: '5' },
+      { name: 'Wide-Grip Lat Pulldown', sets: '4', reps: '8–10' },
+      { name: 'T-Bar Row', sets: '3', reps: '8–10' },
+      { name: 'Barbell Shrugs', sets: '4', reps: '10–12' },
+      { name: 'Face Pulls', sets: '3', reps: '15' },
+      { name: 'Dumbbell Curl', sets: '3', reps: '10–12' },
+      { name: 'Hammer Curl', sets: '3', reps: '10–12' },
+      { name: 'Neck Flexion / Extension', sets: '3', reps: '12–15' },
+    ],
+  },
+  6: {
+    title: 'Legs, Abs & Cardio',
+    focus: 'Legs + Abs + Cardio',
+    exercises: [
+      { name: 'Front Squat', sets: '4', reps: '8' },
+      { name: 'Walking Lunges', sets: '3', reps: '10 / leg' },
+      { name: 'Leg Extension', sets: '3', reps: '12–15' },
+      { name: 'Seated Leg Curl', sets: '3', reps: '12–15' },
+      { name: 'Seated Calf Raise', sets: '4', reps: '15' },
+      { name: 'Plank', sets: '3', reps: '45 sec' },
+      { name: 'Cable Woodchopper', sets: '3', reps: '12 / side' },
+      { name: 'Incline Walk / Cycle', sets: '1', reps: '20 min' },
+    ],
+  },
+}
