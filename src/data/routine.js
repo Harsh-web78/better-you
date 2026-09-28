@@ -22,7 +22,7 @@ export const ROUTINE = [
 export const DIET = {
  targets:['~2,500–2,700 kcal starting estimate','95–110 g protein/day','~2.5–3.0 L fluids/day, adjusted for heat/sweat','Creatine 3–5 g daily'],
  fruits:['Guava','Papaya','Orange/mosambi','Pomegranate','Apple','Banana','Watermelon'],
- seeds:['Pumpkin seeds 15 g','Ground flax 10 g','Sunflower seeds 10 g'],
+ seeds:['Pumpkin seeds 15 g','Ground flax 10 g','Sunflower seeds 10 g','Chia seeds 10 g'],
  protein:['Eggs','Milk','Curd','Dal','Paneer','Chicken','Fish','Peanuts'],
  avoid:['Crash dieting','Smoking/alcohol','Sugary drinks','Excess biscuits/junk','Lemon/toothpaste/baking soda on face','Pimple popping','Forcing 4–5 L water']
 };

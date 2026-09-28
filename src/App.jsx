@@ -1,5 +1,5 @@
 import React,{useMemo,useState} from 'react';
-import {CalendarDays,Dumbbell,Utensils,CheckCircle2,ChevronRight,Sun,ShieldCheck} from 'lucide-react';
+import {CalendarDays,Dumbbell,Utensils,ChevronRight,Sun,ShieldCheck} from 'lucide-react';
 import {WORKOUT_PLAN,POSTURE} from './data/workoutPlan';
 import {ROUTINE,DIET} from './data/routine';
 import {useTracker} from './hooks/useTracker';
@@ -9,7 +9,7 @@ const DAYS=['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunda
 function today(){return new Intl.DateTimeFormat('en-US',{weekday:'long'}).format(new Date())}
 function App(){
  const [tab,setTab]=useState('Today');
- const day=useMemo(today,[]); const [selectedDay,setSelectedDay]=useState(day); const workout=WORKOUT_PLAN[day]; const selectedWorkout=WORKOUT_PLAN[selectedDay];
+ const day=useMemo(()=>today(),[]); const [selectedDay,setSelectedDay]=useState(day); const workout=WORKOUT_PLAN[day]; const selectedWorkout=WORKOUT_PLAN[selectedDay];
  const {checks,toggle,done}=useTracker();
  const nav=[['Today',CalendarDays],['Workout',Dumbbell],['Diet',Utensils]];
  return <div className="app">
