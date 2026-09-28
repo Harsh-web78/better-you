@@ -1,99 +1,25 @@
-// Weekday-indexed home workout split (0 = Sunday ... 6 = Saturday), matching
-// JS Date#getDay(). Bodyweight + two 3 kg plates only — no bar, bench or
-// machines. Edit freely — the dashboard just reads whatever is here for
-// the current day.
 export const WORKOUT_PLAN = {
-  0: {
-    title: 'Rest & Recovery',
-    focus: 'Rest day',
-    isRest: true,
-    exercises: [
-      { name: 'Easy walk (optional)', sets: '1', reps: '20–30 min' },
-      { name: 'Mobility', sets: '1', reps: '8–10 min' },
-    ],
-  },
-  1: {
-    title: 'Chest, Side Delts & Triceps',
-    focus: 'Chest + Side Delts + Triceps',
-    exercises: [
-      { name: 'Push-ups', sets: '4', reps: '8–20' },
-      { name: 'Feet-elevated push-ups', sets: '3', reps: '6–15' },
-      { name: 'Plate squeeze press', sets: '3', reps: '12–20' },
-      { name: 'Plate lateral raise', sets: '4', reps: '15–25' },
-      { name: 'Diamond push-ups', sets: '3', reps: '6–15' },
-      { name: 'Overhead plate triceps extension', sets: '3', reps: '12–20' },
-    ],
-  },
-  2: {
-    title: 'Back, Rear Delts, Biceps & Neck',
-    focus: 'Back + Rear Delts + Biceps + Neck',
-    exercises: [
-      { name: 'Plate bent-over row', sets: '4', reps: '12–20' },
-      { name: 'One-arm plate row', sets: '3', reps: '12–20/side' },
-      { name: 'Prone Y-T-W', sets: '3', reps: '8–12 each' },
-      { name: 'Reverse snow angels', sets: '3', reps: '10–15' },
-      { name: 'Plate curl', sets: '3', reps: '12–20' },
-      { name: 'Hammer-style plate curl', sets: '3', reps: '12–20' },
-      { name: 'Neck flexion', sets: '2', reps: '12–15' },
-      { name: 'Neck extension', sets: '2', reps: '12–15' },
-      { name: 'Neck side flexion', sets: '2', reps: '10–12/side' },
-    ],
-  },
-  3: {
-    title: 'Legs, Abs & Cardio',
-    focus: 'Legs + Abs + Cardio',
-    exercises: [
-      { name: 'Bulgarian split squat', sets: '4', reps: '8–15/leg' },
-      { name: 'Tempo squat', sets: '3', reps: '15–25' },
-      { name: 'Reverse lunge', sets: '3', reps: '10–15/leg' },
-      { name: 'Single-leg Romanian deadlift', sets: '3', reps: '10–15/leg' },
-      { name: 'Glute bridge', sets: '3', reps: '15–25' },
-      { name: 'Single-leg calf raise', sets: '4', reps: '15–25/leg' },
-      { name: 'Reverse crunch', sets: '3', reps: '12–20' },
-      { name: 'Plank', sets: '3', reps: '30–60 sec' },
-      { name: 'Brisk walk', sets: '1', reps: '20–25 min' },
-    ],
-  },
-  4: {
-    title: 'Shoulders, Chest & Arms',
-    focus: 'Shoulders + Chest + Arms',
-    exercises: [
-      { name: 'Pike push-ups', sets: '4', reps: '6–15' },
-      { name: 'Push-ups', sets: '3', reps: '8–20' },
-      { name: 'Plate lateral raise', sets: '4', reps: '15–25' },
-      { name: 'Plate rear-delt fly', sets: '3', reps: '12–20' },
-      { name: 'Plate squeeze press', sets: '3', reps: '12–20' },
-      { name: 'Plate curl', sets: '3', reps: '12–20' },
-      { name: 'Overhead plate triceps extension', sets: '3', reps: '12–20' },
-    ],
-  },
-  5: {
-    title: 'Back, Lats, Traps, Biceps & Neck',
-    focus: 'Back + Lats + Traps + Biceps + Neck',
-    exercises: [
-      { name: 'One-arm plate row', sets: '4', reps: '12–20/side' },
-      { name: 'Plate bent-over row', sets: '3', reps: '12–20' },
-      { name: 'Prone Y-T raises', sets: '3', reps: '10–15 each' },
-      { name: 'Reverse snow angels', sets: '3', reps: '10–15' },
-      { name: 'Plate shrugs', sets: '4', reps: '15–25' },
-      { name: 'Hammer-style plate curl', sets: '3', reps: '12–20' },
-      { name: 'Neck flexion', sets: '2', reps: '12–15' },
-      { name: 'Neck extension', sets: '2', reps: '12–15' },
-      { name: 'Neck side flexion', sets: '2', reps: '10–12/side' },
-    ],
-  },
-  6: {
-    title: 'Legs, Abs & Cardio',
-    focus: 'Legs + Abs + Cardio',
-    exercises: [
-      { name: 'Bulgarian split squat', sets: '4', reps: '10–15/leg' },
-      { name: 'Walking / reverse lunge', sets: '3', reps: '12–20/leg' },
-      { name: 'Single-leg glute bridge', sets: '3', reps: '12–20/leg' },
-      { name: 'Single-leg calf raise', sets: '4', reps: '15–25/leg' },
-      { name: 'Mountain climbers', sets: '3', reps: '30–45 sec' },
-      { name: 'Dead bug', sets: '3', reps: '8–12/side' },
-      { name: 'Reverse crunch', sets: '3', reps: '12–20' },
-      { name: 'Brisk walk', sets: '1', reps: '20–30 min' },
-    ],
-  },
-}
+  Monday:{title:'V-Taper + Chest + Side Delts',focus:'Back width, chest and shoulder width',exercises:[
+    ['One-arm plate row','4 × 12–20 / side','90 sec'],['Plate bent-over row','3 × 12–20','90 sec'],['Prone lat pull-down motion','3 × 12–15','60–90 sec'],['Push-ups','3 × 10–20','60–90 sec'],['Feet-elevated push-ups','3 × 8–15','90 sec'],['Plate lateral raise','4 × 15–25','60–90 sec'],['Wall slides','2 × 12','60 sec'],['Chin tucks','2 × 10','60 sec']
+  ]},
+  Tuesday:{title:'Legs + Abs + Neck',focus:'Lower body, core and neck',exercises:[
+    ['Bulgarian split squat','4 × 8–15 / leg','90–120 sec'],['Tempo squat','3 × 15–25','90 sec'],['Reverse lunge','3 × 10–15 / leg','90 sec'],['Single-leg RDL','3 × 10–15 / leg','90 sec'],['Single-leg calf raise','4 × 15–25 / leg','60 sec'],['Reverse crunch','3 × 12–20','60 sec'],['Dead bug','3 × 8–12 / side','60 sec'],['Plank','3 × 30–60 sec','60 sec'],['Neck flexion','2 × 12–15','60 sec'],['Neck extension','2 × 12–15','60 sec'],['Neck side flexion','2 × 10–12 / side','60 sec']
+  ]},
+  Wednesday:{title:'Shoulders + Upper Chest + Arms + Posture',focus:'Shoulder cap, upper chest and arms',exercises:[
+    ['Pike push-ups','4 × 6–15','90–120 sec'],['Plate lateral raise','4 × 15–25','60–90 sec'],['Plate rear-delt fly','3 × 12–20','60–90 sec'],['Feet-elevated push-ups','3 × 8–15','90 sec'],['Plate squeeze press','3 × 12–20','60–90 sec'],['Plate curl','3 × 12–20','60–90 sec'],['Hammer-style plate curl','3 × 12–20','60–90 sec'],['Overhead plate triceps extension','3 × 12–20','60–90 sec'],['Prone Y-T-W','2 × 8–12 each','60 sec'],['Reverse snow angels','2 × 10–15','60 sec']
+  ]},
+  Thursday:{title:'Back Specialization + Traps + Abs',focus:'Aesthetic back, traps and core',exercises:[
+    ['One-arm plate row','4 × 12–20 / side','90 sec'],['Plate bent-over row','4 × 12–20','90 sec'],['Prone Y raise','3 × 10–15','60 sec'],['Prone T raise','3 × 10–15','60 sec'],['Reverse snow angels','3 × 10–15','60 sec'],['Plate shrugs','4 × 15–25','60–90 sec'],['Reverse crunch','3 × 12–20','60 sec'],['Plank','3 × 30–60 sec','60 sec'],['Wall slides','2 × 12','60 sec']
+  ]},
+  Friday:{title:'Chest + Shoulders + Arms + Neck',focus:'Torso, shoulder width and arms',exercises:[
+    ['Push-ups','4 × 8–20','60–90 sec'],['Feet-elevated push-ups','3 × 8–15','90 sec'],['Plate squeeze press','3 × 12–20','60–90 sec'],['Pike push-ups','3 × 6–15','90 sec'],['Plate lateral raise','4 × 15–25','60–90 sec'],['Rear-delt fly','3 × 12–20','60–90 sec'],['Plate curl','3 × 12–20','60–90 sec'],['Overhead plate triceps extension','3 × 12–20','60–90 sec'],['Neck flexion','2 × 12–15','60 sec'],['Neck extension','2 × 12–15','60 sec'],['Neck side flexion','2 × 10–12 / side','60 sec']
+  ]},
+  Saturday:{title:'Legs + Abs + Athletic Conditioning',focus:'Legs, core and conditioning',exercises:[
+    ['Bulgarian split squat','4 × 10–15 / leg','90–120 sec'],['Walking/reverse lunge','3 × 12–20 / leg','90 sec'],['Single-leg glute bridge','3 × 12–20 / leg','60–90 sec'],['Single-leg RDL','3 × 10–15 / leg','90 sec'],['Single-leg calf raise','4 × 15–25 / leg','60 sec'],['Reverse crunch','3 × 12–20','60 sec'],['Dead bug','3 × 8–12 / side','60 sec'],['Plank','3 × 30–60 sec','60 sec'],['Mountain climbers','3 × 30–45 sec','60 sec'],['Brisk walk','15–25 min','—']
+  ]},
+  Sunday:{title:'Recovery',focus:'Walk, mobility and recovery',exercises:[['Easy walk','20–30 min','—'],['Mobility','8–10 min','—'],['Posture routine','5–10 min','—']]}
+};
+
+export const POSTURE = [
+ ['Chin tucks','2 × 10'],['Wall angels','2 × 10'],['Wall slides','2 × 12'],['Prone Y-T','1 × 10 each'],['Reverse snow angels','2 × 10'],['Hip-flexor stretch','30 sec / side'],['Chest doorway stretch','30 sec / side'],['Standing posture practice','1–2 min']
+];
