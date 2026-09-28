@@ -42,6 +42,12 @@ function App() {
   const done = tracker.done;
   const pct = Math.round((done / TOTAL_CHECKS) * 100);
 
+  // First not-yet-logged checkpoint gets the milestone highlight.
+  const currentWeek = CHECKPOINT_WEEKS.find((w) => {
+    const e = transform.checkpoints[w] || {};
+    return !(e.loggedDate || e.weight || e.frontPhotoId || e.sidePhotoId || e.backPhotoId);
+  });
+
   // Archive today's completion snapshot (guarded inside: no-op when unchanged).
   useEffect(() => {
     recordToday(todayKey, { pct, done, total: TOTAL_CHECKS, waterMl: water.ml });
@@ -97,9 +103,9 @@ function App() {
           </section>
 
           <section className="summary-grid">
-            <div className="stat"><Flame size={16} /><b>{streak}</b><span>day streak</span></div>
-            <div className="stat"><Droplets size={16} /><b>{(water.ml / 1000).toFixed(2)} L</b><span>water today</span></div>
-            <div className="stat"><Moon size={16} /><b>{habits.sleepHours ?? '–'}</b><span>hours slept</span></div>
+            <div className="stat s-orange"><Flame size={16} /><b>{streak}</b><span>day streak</span></div>
+            <div className="stat s-blue"><Droplets size={16} /><b>{(water.ml / 1000).toFixed(2)} L</b><span>water today</span></div>
+            <div className="stat s-purple"><Moon size={16} /><b>{habits.sleepHours ?? '–'}</b><span>hours slept</span></div>
           </section>
 
           <Card title="Water" icon={<Droplets size={18} />}>
@@ -226,9 +232,9 @@ function App() {
           </section>
 
           <section className="summary-grid">
-            <div className="stat"><Flame size={16} /><b>{streak}</b><span>current streak</span></div>
-            <div className="stat warm"><Activity size={16} /><b>{best}</b><span>best streak</span></div>
-            <div className="stat"><CalendarDays size={16} /><b>{pct}%</b><span>today so far</span></div>
+            <div className="stat s-orange"><Flame size={16} /><b>{streak}</b><span>current streak</span></div>
+            <div className="stat s-warm"><Activity size={16} /><b>{best}</b><span>best streak</span></div>
+            <div className="stat s-green"><CalendarDays size={16} /><b>{pct}%</b><span>today so far</span></div>
           </section>
 
           <Card title="Last 14 days" icon={<CalendarDays size={18} />}>
@@ -261,7 +267,7 @@ function App() {
             <p>Front / side / back photos stay on this device (compressed, in IndexedDB).</p>
           </section>
           {CHECKPOINT_WEEKS.map((w) => (
-            <CheckpointCard key={w} week={w} store={transform} />
+            <CheckpointCard key={w} week={w} store={transform} current={w === currentWeek} />
           ))}
         </main>
       )}
@@ -281,7 +287,7 @@ function WorkoutList({ workout }) {
       {workout.exercises.map((e, i) => (
         <div className="exercise" key={e[0] + i}>
           <span className="num">{i + 1}</span>
-          <div><b>{e[0]}</b><div><span className="badge sets">{e[1]}</span><span className="badge rest">Rest {e[2]}</span></div></div>
+          <div><b>{e[0]}</b><div><SplitBadges spec={e[1]} /><span className="badge rest">Rest {e[2]}</span></div></div>
         </div>
       ))}
     </div>
@@ -290,6 +296,19 @@ function WorkoutList({ workout }) {
 
 function Chips({ items }) {
   return <div className="chips">{items.map((x) => <span key={x}>{x}</span>)}</div>;
+}
+
+// Splits a "sets × reps" spec (data unchanged) into green sets + purple reps
+// badges. Duration-only specs (no ×) render as a single badge.
+function SplitBadges({ spec }) {
+  const parts = String(spec).split('×');
+  if (parts.length < 2) return <span className="badge reps">{spec}</span>;
+  return (
+    <>
+      <span className="badge sets">{parts[0].trim()} sets</span>
+      <span className="badge reps">{parts[1].trim()}</span>
+    </>
+  );
 }
 
 function WeightBlock({ weight, todayKey }) {
@@ -310,6 +329,7 @@ function WeightBlock({ weight, todayKey }) {
   const prev = entries.length > 1 ? entries[entries.length - 2] : null;
   const deltaRecent = latest && prev ? Math.round((latest.kg - prev.kg) * 10) / 10 : null;
   const recent = useMemo(() => [...entries].reverse().slice(0, 14), [entries]);
+  const maxKg = entries.length ? Math.max(...entries.map((e) => e.kg)) : 0;
 
   return (
     <div>
@@ -317,8 +337,8 @@ function WeightBlock({ weight, todayKey }) {
         <div className="weight-top">
           <b>{latest.kg} kg</b>
           <span className="muted">last logged {formatShortDate(latest.date)}
-            {deltaTotal !== null && ` · ${deltaTotal > 0 ? '+' : ''}${deltaTotal} kg since start`}
-            {deltaRecent !== null && ` · ${deltaRecent > 0 ? '+' : ''}${deltaRecent} kg vs previous`}
+            {deltaTotal !== null && (<span className="trend-up"> · {deltaTotal > 0 ? '+' : ''}{deltaTotal} kg since start</span>)}
+            {deltaRecent !== null && (<span className="trend-up"> · {deltaRecent > 0 ? '+' : ''}{deltaRecent} kg vs previous</span>)}
           </span>
         </div>
       ) : (
@@ -338,6 +358,7 @@ function WeightBlock({ weight, todayKey }) {
           {recent.map((e) => (
             <div className="weight-row" key={e.date}>
               <span className="muted">{formatShortDate(e.date)}</span>
+              <span className="wbar"><span className="wbar-fill" style={{ width: `${maxKg ? Math.round((e.kg / maxKg) * 100) : 0}%` }} /></span>
               <b>{e.kg} kg</b>
               <button className="icon-btn" onClick={() => removeEntry(e.date)} aria-label={`Remove entry ${e.date}`}>
                 <Trash2 size={14} />
@@ -365,7 +386,7 @@ function PhotoThumb({ id, angle, onDelete }) {
   );
 }
 
-function CheckpointCard({ week, store }) {
+function CheckpointCard({ week, store, current }) {
   const { checkpoints, saveCheckpoint, deleteCheckpointPhoto } = store;
   const entry = checkpoints[week] || {};
   const [w, setW] = useState('');
@@ -388,7 +409,7 @@ function CheckpointCard({ week, store }) {
 
   const isDone = !!(entry.loggedDate || entry.weight || entry.frontPhotoId || entry.sidePhotoId || entry.backPhotoId);
   return (
-    <section className="card">
+    <section className={`card tcard${current && !isDone ? ' current' : ''}`}>
       <h3><Camera size={18} /> Week {week}
         <span className={`status ${isDone ? 'done' : 'todo'}`}>{isDone ? 'Logged' : 'Upcoming'}</span>
         <span className="muted head-note">
